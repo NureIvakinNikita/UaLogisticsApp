@@ -1,0 +1,12 @@
+<div class="navbar">
+    <a class="navbar-title" href="/">{{"appName" | translate}}</a>
+    <a class="navbar-link" href="/login">{{"login" | translate}}</a>
+    <a *ngIf="role !== 'empty'" class="navbar-link" href="/battle-groups">Battle Groups</a>
+    <div class="dropdown">
+        <button class="dropbtn">{{"language" | translate}}</button>
+        <div class="dropdown-content">
+            <a (click)="setLanguage('uk')">Uk</a>
+            <a (click)="setLanguage('en')">En</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+http://localhost:8080/api/device/scan-car
+http://localhost:8080/api/auth/authenticate

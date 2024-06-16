@@ -1,0 +1,1 @@
+{"id":1,"login":"scanning.device1@gmail.com","serverUrlSend":"http://localhost:8080/api/device/scan-car","serverUrlAuth":"http://localhost:8080/api/auth/authenticate","token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzY2FubmluZy5kZXZpY2UxQGdtYWlsLmNvbSIsImlhdCI6MTcxNzY1NTQ2OCwiZXhwIjoxNzE3NzQxODY4fQ.fL4LdGnEn2yw5-pXkTdp5dkirBeYa9XVA09Dml66Hy4"}

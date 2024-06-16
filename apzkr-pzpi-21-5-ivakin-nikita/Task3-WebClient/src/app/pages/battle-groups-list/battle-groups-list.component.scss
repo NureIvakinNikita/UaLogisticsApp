@@ -1,0 +1,67 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  height: 100vh;
+  background-color: #a0d7a1;
+
+  .add-button {
+      width: 80%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+
+      button {
+          padding: 5px 10px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          background-color: #b9f735;
+          color: rgb(2, 2, 2);
+      }
+  }
+
+  .table-container {
+      width: 80%;
+      background-color: #FDF9EA;
+      border-collapse: collapse;
+      border: 1px solid #ccc;
+
+      table {
+          width: 100%;
+          border-collapse: collapse;
+
+          th, td {
+              text-align: left;
+              padding: 8px;
+          }
+
+          th {
+              background-color: #f2f2f2;
+          }
+
+          td {
+              border-bottom: 1px solid #ddd;
+          }
+      }
+
+      button {
+          padding: 5px 10px;
+          margin-left: 5px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .see-resources {
+          background-color: #d3d700;
+          color: #000;
+      }
+
+      .commander-info {
+          background-color: #d27d2d;
+          color: #fff;
+      }
+  }
+}

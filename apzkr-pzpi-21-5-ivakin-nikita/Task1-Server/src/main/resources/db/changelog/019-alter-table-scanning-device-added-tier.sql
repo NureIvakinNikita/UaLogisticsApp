@@ -1,0 +1,1 @@
+ALTER TABLE project.scanning_device ADD COLUMN tier INTEGER NOT NULL;

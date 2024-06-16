@@ -1,0 +1,63 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BrigadeCommanderControllerService } from '../../services/services';
+import { TokenService } from '../../services/token/token.service';
+import { Role } from '../../services/models/Role';
+import { HttpErrorResponse } from '@angular/common/http';
+
+@Component({
+  selector: 'app-assign-commander',
+  templateUrl: './assign-commander.component.html',
+  styleUrl: './assign-commander.component.scss'
+})
+export class AssignCommanderComponent implements OnInit {
+
+  assign = {
+    groupId: 0,
+    commanderId: 0
+  }
+  role: string | undefined;
+  errorMsg: Array<string> = [];
+
+  
+  constructor(
+    private router: Router,
+    private brigadeCommanderService: BrigadeCommanderControllerService,
+    private route: ActivatedRoute,
+    private tokenService: TokenService
+  ) {}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(() => {
+      const state = window.history.state;
+      this.assign.groupId = state.id;
+    });
+    this.role = this.tokenService.getRoleFromToken();
+  }
+
+
+  onSubmit() {
+    this.errorMsg = [];
+    if (this.role === Role.BRIGADE_COMMANDER) {
+      this.brigadeCommanderService.assignBattalionCommander().subscribe({
+        next: (response) => {
+          console.log('Battalion created successfully', response);
+          this.router.navigate(['/battle-groups']);  // Redirect after successful creation
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.error) {
+            this.errorMsg = err.error.validationErrors || [];
+          } else {
+            console.log(err);
+            this.errorMsg = ["An unexpected error occurred. Please try again."];
+          }
+        }
+      });
+    }
+  }
+
+
+  onCancel() {
+    this.router.navigate(['/battle-groups']);
+  }
+}
