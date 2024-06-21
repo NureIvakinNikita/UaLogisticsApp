@@ -38,6 +38,7 @@ public class SecurityConfig {
                             .requestMatchers("/api/plat-com/**").hasAnyRole("PLAT_COMMANDER", "ADMIN")
                             .requestMatchers("/api/log-com/**").hasAnyRole("LOGISTIC_COMMANDER", "ADMIN")
                             .requestMatchers("/api/device/**").hasAnyRole("SCANNING_DEVICE")
+                            .requestMatchers("/api/admin/**").hasAnyRole("ADMIN")
                             .anyRequest().permitAll();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

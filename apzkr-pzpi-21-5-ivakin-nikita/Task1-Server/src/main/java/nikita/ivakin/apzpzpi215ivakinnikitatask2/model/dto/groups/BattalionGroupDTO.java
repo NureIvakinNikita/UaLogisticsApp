@@ -60,6 +60,7 @@ public class BattalionGroupDTO {
     @Min(value = 0, message = "Amount of apc should be bigger or equal 0.", groups = {CreateGroup.class, UpdateGroup.class})
     private int apcCount;
 
-    private BattalionCommanderDTO battalionCommanderDTO;
+
+    private BattalionCommanderDTO commander;
 
 }

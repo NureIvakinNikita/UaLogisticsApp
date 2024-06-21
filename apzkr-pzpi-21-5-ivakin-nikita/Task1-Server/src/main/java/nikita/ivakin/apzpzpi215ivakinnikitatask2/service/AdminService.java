@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -46,6 +48,15 @@ public class AdminService {
             throw new ScanningDeviceCreationException("Error in creation scanning device for post with id " + id);
         }
 
+    }
+
+    public List<PostDTO> getPosts() {
+        List<Post> posts = postService.findAll();
+        List<PostDTO> postDTOS = new ArrayList<>();
+        for (Post post : posts) {
+            postDTOS.add(postService.mapPostToDto(post));
+        }
+        return postDTOS;
     }
 
     public boolean changeIotUrl(String url) {

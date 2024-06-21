@@ -38,7 +38,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(brigadeGroupDTO, HttpStatus.OK);
     }
 
-    //checked
+    //checked and done
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @GetMapping("/brigade-battalion-groups")
     public ResponseEntity<List<BattalionGroupDTO>> getBattalionGroups() {
@@ -46,7 +46,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(battalionGroups, HttpStatus.OK);
     }
 
-    //checked
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PostMapping("/create/brigade")
     public ResponseEntity<Boolean> createBrigade(@Validated({Default.class, CreateGroup.class}) @RequestBody BrigadeGroupDTO brigadeGroupDTO) {
@@ -54,7 +54,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    //checked
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PutMapping("/update/brigade-resources")
     public ResponseEntity<ResourcesUpdateResponse> updateBrigadeResources(@Validated({Default.class, UpdateGroup.class})@RequestBody BrigadeGroupDTO brigadeGroupDTO) {
@@ -62,7 +62,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(resourcesUpdateResponse, HttpStatus.OK);
     }
 
-    //checked
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PostMapping("/create/logistic-company")
     public ResponseEntity<Boolean> createLogisticCompany(@Validated({Default.class, CreateGroup.class}) @RequestBody LogisticCompanyDTO logisticCompanyDTO) {
@@ -70,7 +70,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    //checked
+    //checked and done
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PostMapping("/create/battalion")
     public ResponseEntity<Boolean> createBattalion(@Validated({Default.class, CreateGroup.class}) @RequestBody BattalionGroupDTO battalionGroupDTO) {
@@ -78,7 +78,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    //checked
+    //checked and done
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PutMapping("/assign/battalion-commander")
     public ResponseEntity<Boolean> assignBattalionCommander(@RequestParam Integer battalionCommanderId, @RequestParam Integer battalionGroupId) {
@@ -86,6 +86,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PutMapping("/assign/logistic-commander")
     public ResponseEntity<Boolean> assignLogisticCommander(@RequestParam Integer logisticCommanderId, @RequestParam Integer logisticCompanyId) {
@@ -93,7 +94,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    //checked
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @GetMapping("/get/brigade-requests")
     public ResponseEntity<List<SupplyRequest>> getBrigadeRequests(){
@@ -101,7 +102,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(supplyRequests, HttpStatus.OK);
     }
 
-    //checked
+    //checked done
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @GetMapping("/get/battalion-requests")
     public ResponseEntity<List<SupplyRequest>> getBattalionsRequests(){
@@ -109,7 +110,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(supplyRequests, HttpStatus.OK);
     }
 
-    //checked
+    //checked done
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PostMapping("/send/resources-to-battalion")
     public ResponseEntity<ResourcesUpdateResponse> sendResources(@RequestBody SupplyRequest supplyRequest) {
@@ -117,7 +118,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(resourcesUpdateResponse, HttpStatus.OK);
     }
 
-    //checked
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PostMapping("/ask/for-resources")
     public ResponseEntity<Boolean> askForResources(@Valid @RequestBody ResourcesRequestDTO resourcesRequestDTO){
@@ -125,7 +126,7 @@ public class BrigadeCommanderController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    //checked
+    //checked to do
     @PreAuthorize("hasAnyRole('BRIGADE_COMMANDER', 'ADMIN')")
     @PutMapping("/confirm/getting-of-resources")
     public ResponseEntity<Boolean> confirmGettingOfResources(@RequestParam Integer supplyRequestId){

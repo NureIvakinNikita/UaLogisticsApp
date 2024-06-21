@@ -3,6 +3,7 @@ package nikita.ivakin.apzpzpi215ivakinnikitatask2.service.groups;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.commanders.BrigadeCommanderDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.groups.BrigadeGroupDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.entity.commanders.BrigadeCommander;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.entity.militaryGroups.BrigadeGroup;
@@ -106,7 +107,7 @@ public class BrigadeGroupService {
         return true;
     }
 
-    public BrigadeGroupDTO mapBrigadeGroupToDTO(BrigadeGroup brigadeGroup) {
+    public BrigadeGroupDTO mapBrigadeGroupToDTO(BrigadeGroup brigadeGroup, BrigadeCommanderDTO brigadeCommanderDTO) {
         try {
             return BrigadeGroupDTO.builder()
                     .id(brigadeGroup.getId())
@@ -128,6 +129,7 @@ public class BrigadeGroupService {
                     .helmetsCount(brigadeGroup.getHelmetsCount())
                     .apcCount(brigadeGroup.getApcCount())
                     .tankCount(brigadeGroup.getTankCount())
+                    .commander(brigadeCommanderDTO)
                     .build();
         } catch (Exception e) {
             throw new MilitaryGroupMappingToDtoException("Something went wrong in mapping brigade group to brigade group dto.");

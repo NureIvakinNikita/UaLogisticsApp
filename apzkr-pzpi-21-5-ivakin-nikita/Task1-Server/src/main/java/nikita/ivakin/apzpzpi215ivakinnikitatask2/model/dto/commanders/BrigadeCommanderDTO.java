@@ -27,5 +27,9 @@ public class BrigadeCommanderDTO {
     private Integer age;
 
     private String email;
+
+    private String passportNumber;
+
+    private Integer brigadeGroupId;
 }
 

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import lombok.Data;
+import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.commanders.BrigadeCommanderDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.vlidation.CreateGroup;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.vlidation.UpdateGroup;
 
@@ -59,4 +60,6 @@ public class BrigadeGroupDTO {
     private int tankCount;
     @Min(value = 0, message = "Amount of apc should be bigger or equal 0.", groups = {CreateGroup.class, UpdateGroup.class})
     private int apcCount;
+
+    private BrigadeCommanderDTO commander;
 }

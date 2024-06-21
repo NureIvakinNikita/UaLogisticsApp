@@ -9,6 +9,7 @@ import nikita.ivakin.apzpzpi215ivakinnikitatask2.exceptions.PostNotFoundExceptio
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,8 +38,12 @@ public class PostService {
         PostDTO postDTO = PostDTO.builder()
                 .id(post.getId())
                 .location(post.getLocation())
-                .scanningDeviceId(post.getScanningDevice().getId()).build();
+                .scanningDeviceId(post.getScanningDevice() !=null ? post.getScanningDevice().getId() : 0).build();
         return postDTO;
+    }
+
+    public List<Post> findAll(){
+        return postRepository.findAll();
     }
 
     @Transactional

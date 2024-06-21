@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.ResourcesRequestDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.commanders.BattalionCommanderDTO;
+import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.commanders.BrigadeCommanderDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.groups.BattalionGroupDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.groups.BrigadeGroupDTO;
 import nikita.ivakin.apzpzpi215ivakinnikitatask2.model.dto.groups.LogisticCompanyDTO;
@@ -145,6 +146,9 @@ public class BrigadeCommanderService {
     public boolean assignBattalionCommander(Integer battalionCommanderId, Integer battalionGroupId) {
         BrigadeCommander brigadeCommander = getAuthenticatedBrigadeCommander();
         BattalionCommander battalionCommander = battalionCommanderService.findBattalionCommanderById(battalionCommanderId);
+        if (battalionCommander.getBattalionGroup() != null) {
+            throw new CommanderAssigningException("BattalionCommander with such id already assigned.");
+        }
         BattalionGroup battalionGroup = battalionCommanderService.getBattalionGroupService().findBattalionGroupById(battalionGroupId);
         givenResourcesService.assignCommander(battalionCommanderId, battalionGroupId, brigadeCommander.getId(), Role.BATTALION_COMMANDER);
         battalionGroup.setBattalionCommanderId(battalionCommander);
@@ -265,7 +269,8 @@ public class BrigadeCommanderService {
             supplyRequest.setExecutiveCommanderId(brigadeCommander.getId());
             supplyRequest.setExecutiveGroupId(brigadeCommander.getBrigadeGroupId().getId());
             supplyRequest.setRoleOfExecutiveCommander(Role.BRIGADE_COMMANDER);
-            return allocateResources(supplyRequest.getResourcesRequestId(), brigadeCommander.getBrigadeGroupId(), brigadeCommander, battalionGroup);
+            supplyRequestService.save(supplyRequest);
+            return resourcesUpdateResponse;
         }
         return new ResourcesUpdateResponse(false, false);
     }
@@ -280,7 +285,7 @@ public class BrigadeCommanderService {
             throw new GivenResourcesCreationException("Something went wrong in allocation resources for battalion group");
         }
 
-        return new ResourcesUpdateResponse(allocated, !validateResources(brigadeGroupService.mapBrigadeGroupToDTO(brigadeGroup)));
+        return new ResourcesUpdateResponse(allocated, !validateResources(brigadeGroupService.mapBrigadeGroupToDTO(brigadeGroup, mapBrigadeCommanderToDTO(brigadeCommander))));
     }
 
     public List<BattalionGroupDTO> getBrigadeBattalionGroups() {
@@ -290,7 +295,7 @@ public class BrigadeCommanderService {
         for (BattalionGroupDTO battalionGroupDTO : battalionGroupDTOS) {
             for (BattalionCommanderDTO battalionCommanderDTO : battalionCommanderDTOS) {
                 if (battalionCommanderDTO.getBattalionGroupId().equals(battalionGroupDTO.getId())) {
-                    battalionGroupDTO.setBattalionCommanderDTO(battalionCommanderDTO);
+                    battalionGroupDTO.setCommander(battalionCommanderDTO);
                 }
             }
         }
@@ -307,7 +312,7 @@ public class BrigadeCommanderService {
     public BrigadeGroupDTO getBrigadeGroup() {
         BrigadeCommander brigadeCommander = getAuthenticatedBrigadeCommander();
         BrigadeGroup brigadeGroup = brigadeGroupService.findBrigadeGroupByBrigadeCommander(brigadeCommander);
-        return brigadeGroupService.mapBrigadeGroupToDTO(brigadeGroup);
+        return brigadeGroupService.mapBrigadeGroupToDTO(brigadeGroup, mapBrigadeCommanderToDTO(brigadeCommander));
     }
 
     public boolean confirmGettingOfResources(Integer supplyRequestId) {
@@ -320,6 +325,21 @@ public class BrigadeCommanderService {
         } catch (Exception e) {
             throw new SupplyRequestUpdateException("Error in updating supply request in brigade commander service.");
         }
+    }
+
+
+    private BrigadeCommanderDTO mapBrigadeCommanderToDTO(BrigadeCommander brigadeCommander) {
+        return BrigadeCommanderDTO.builder()
+                .id(brigadeCommander.getId())
+                .firstName(brigadeCommander.getFirstName())
+                .lastName(brigadeCommander.getLastName())
+                .secondName(brigadeCommander.getSecondName())
+                .email(brigadeCommander.getEmail())
+                .rank(brigadeCommander.getRank())
+                .role(brigadeCommander.getRole())
+                .passportNumber(brigadeCommander.getPassportNumber())
+                .brigadeGroupId(brigadeCommander.getBrigadeGroupId().getId())
+                .build();
     }
 }
 

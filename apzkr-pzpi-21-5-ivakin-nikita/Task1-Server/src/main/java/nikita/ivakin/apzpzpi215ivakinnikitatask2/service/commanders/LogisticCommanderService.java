@@ -44,7 +44,7 @@ public class LogisticCommanderService {
     public List<SupplyRequest> getAllRequests() {
         LogisticCommander logisticCommander = getAuthenticatedLogisticCommander();
         List<SupplyRequest> supplyRequests = supplyRequestService.getSupplyRequestsForBrigadeByBrigadeId(logisticCommander.getBrigadeGroup().getId(), Role.BRIGADE_COMMANDER);
-        supplyRequests.addAll(supplyRequestService.getAllSupplyRequestsByBrigadeCommanderId(logisticCommander.getBrigadeCommander().getId()));
+        //supplyRequests.addAll(supplyRequestService.getAllSupplyRequestsByBrigadeCommanderId(logisticCommander.getBrigadeCommander().getId()));
         return supplyRequests;
     }
 
@@ -106,8 +106,9 @@ public class LogisticCommanderService {
 
             supplyCar.setSupplyRequest(supplyRequest);
             supplyCar.setLogisticCompany(logisticCompany);
-
+            supplyRequest.setStatus(Status.CAR_ASSIGNED_EXECUTING);
             supplyCarService.save(supplyCar);
+            supplyRequestService.save(supplyRequest);
         } catch (Exception e) {
             throw new SupplyCarCreationException("Error in creating supply car.");
         }

@@ -1,0 +1,1 @@
+ALTER TABLE project.supply_car DROP CONSTRAINT  supply_car_logistic_company_id_key;

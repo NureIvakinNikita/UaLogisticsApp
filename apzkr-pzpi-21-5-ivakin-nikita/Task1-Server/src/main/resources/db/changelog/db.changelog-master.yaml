@@ -53,3 +53,6 @@ databaseChangeLog:
   - include:
       file: 019-alter-table-scanning-device-added-tier.sql
       relativeToChangelogFile: true
+  - include:
+      file: 020-drop-constraint-for-supply-car.sql
+      relativeToChangelogFile: true
