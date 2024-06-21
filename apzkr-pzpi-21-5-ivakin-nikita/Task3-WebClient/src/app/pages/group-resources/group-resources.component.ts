@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class GroupResourcesComponent implements OnInit {
 
-  battalionGroup: BattalionGroupDto = {
+  battleGroup: any = {
     id: 0,
     ammo556x45ArCount: 0,
     ammo40mmRpgCount: 0,
@@ -36,6 +36,7 @@ export class GroupResourcesComponent implements OnInit {
   actionType: string | undefined;
   role: string | undefined;
   errorMsg: Array<string> = [];
+  type: string = "";
   constructor(private router: Router, private route: ActivatedRoute,
     private tokenService: TokenService,
     private brigadeCommanderService: BrigadeCommanderControllerService,
@@ -46,12 +47,13 @@ export class GroupResourcesComponent implements OnInit {
     this.role = this.tokenService.getRoleFromToken();
     this.route.paramMap.subscribe(() => {
       const state = window.history.state;
-      this.battalionGroup = state.battalionGroup;
-      console.log(this.battalionGroup);
+      this.battleGroup = state.battleGroup;
+      this.type = state.type;
+      console.log(this.battleGroup);
       this.actionType = state.actionType;
 
       if (this.actionType === 'create') {
-        this.battalionGroup = {
+        this.battleGroup = {
           id: 0,
           personnelCount: 0,
           ammo556x45ArCount: 0,
@@ -71,7 +73,7 @@ export class GroupResourcesComponent implements OnInit {
           riflesCount: 0,
           apcCount: 0
         };
-      } else if (!this.battalionGroup) {
+      } else if (!this.battleGroup) {
         console.error('No battalion group data available');
       }
     });
@@ -80,15 +82,16 @@ export class GroupResourcesComponent implements OnInit {
   onSubmit() {
     this.errorMsg = [];
     if (this.actionType === "create") {
-      if (this.getType() === "battalion") {
-        this.brigadeCommanderService.createBattalion({ body: this.battalionGroup }).subscribe({
+      if (this.getType() === "Battalion") {
+        this.brigadeCommanderService.createBattalion({ body: this.battleGroup }).subscribe({
           next: (response) => {
             console.log('Battalion created successfully', response);
-            this.router.navigate(['/battle-groups']);  // Redirect after successful creation
+            const type = this.type;
+            this.router.navigate(['/battle-groups'], { state: { type } });  
           },
           error: (err: HttpErrorResponse) => {
             if (err.error) {
-              this.errorMsg = err.error.validationErrors || [];
+              this.errorMsg = err.error.validationErrors || err.error.message;
             } else {
               console.log(err);
               this.errorMsg = ["An unexpected error occurred. Please try again."];
@@ -96,24 +99,46 @@ export class GroupResourcesComponent implements OnInit {
           }
         });
       }
+    } if (this.actionType === "update") {
+      this.update();
+    } 
+  }
+
+  update(){
+    if (this.getType() === "Brigade")  {
+      this.brigadeCommanderService.updateBrigadeResources({ body: this.battleGroup }).subscribe({
+        next: (response) => {
+          const type = this.type;
+          this.router.navigate(['/battle-groups'], { state: { type } });  
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.error) {
+            this.errorMsg = err.error.validationErrors || err.error.message;
+          } else {
+            console.log(err);
+            this.errorMsg = ["An unexpected error occurred. Please try again."];
+          }
+        }
+      });
     }
   }
 
   goBack() {
-    this.router.navigate(['/battle-groups']);
+    const type = this.type;
+    this.router.navigate(['/battle-groups'], { state: { type } });  
   }
 
 
   getType() {
     switch (this.role) {
       case Role.BRIGADE_COMMANDER:
-        return 'battalion';
+        return this.type === "" || this.type === "groups" ? 'Battalion' : this.type;
       case Role.BATTALION_COMMANDER:
-        return 'company';
+        return this.type === "" || this.type === "groups" ? 'Company' : this.type;
       case Role.COMPANY_COMMANDER:
-        return 'plat';
+        return this.type === "" || this.type === "groups" ? 'Plat' : this.type;
       case Role.PLAT_COMMANDER:
-        return 'brigade';
+        return 'Plat';
       default:
         return 'Error';
     }

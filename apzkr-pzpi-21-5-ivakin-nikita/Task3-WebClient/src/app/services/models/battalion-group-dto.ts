@@ -10,7 +10,7 @@ export interface BattalionGroupDto {
   ammo762PktCount?: number;
   ammo762x39AkCount?: number;
   apcCount?: number;
-  battalionCommanderDTO?: BattalionCommanderDto;
+  commander?: BattalionCommanderDto;
   bodyArmorCount?: number;
   defensiveGrenadesCount?: number;
   dryRationsCount?: number;

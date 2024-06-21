@@ -1,4 +1,7 @@
 /* tslint:disable */
+
+import { BrigadeCommanderDto } from "./brigade-commander-dto";
+
 /* eslint-disable */
 export interface BrigadeGroupDto {
   ammo145KpvtCount?: number;
@@ -9,6 +12,7 @@ export interface BrigadeGroupDto {
   ammo762PktCount?: number;
   ammo762x39AkCount?: number;
   apcCount?: number;
+  commander?: BrigadeCommanderDto;
   bodyArmorCount?: number;
   defensiveGrenadesCount?: number;
   dryRationsCount?: number;

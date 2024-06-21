@@ -1,0 +1,37 @@
+<div class="background">
+    <h1 *ngIf="posts.length<=0">There are no posts yet</h1>
+    <h1 *ngIf="posts.length>0">Posts</h1>
+    <div class="add-button">
+        <button  (click)="addPost()">Add post</button>
+    </div>
+    <div *ngIf="posts.length>0" class="table-container">
+        <table >
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Location</th>
+                    <th>Device number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tempPost of posts">
+                    <td>{{tempPost.id}}</td>
+                    <td>{{tempPost.location}}</td>
+                    <td>
+                        <ng-container *ngIf="tempPost.scanningDeviceId; else noValue"> 
+                            {{tempPost.scanningDeviceId}}
+                        </ng-container>
+                        <ng-template #noValue>Missing</ng-template>
+                    </td>
+                    <td *ngIf="tempPost.scanningDeviceId === 0">
+                        <button class="assign-device" (click)="assignDevice(tempPost.id!)">Assign device</button>
+                    </td>
+                    <td *ngIf="tempPost.scanningDeviceId !== 0">
+                        Device assigned
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -13,6 +13,10 @@ export class TokenService {
     return localStorage.getItem('token') as string;
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
   getRoleFromToken(): string {
     const token = this.token; 
     if (token?.length > 0) {

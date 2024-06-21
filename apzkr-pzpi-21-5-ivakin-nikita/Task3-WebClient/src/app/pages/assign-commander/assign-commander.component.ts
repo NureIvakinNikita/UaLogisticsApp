@@ -4,6 +4,7 @@ import { BrigadeCommanderControllerService } from '../../services/services';
 import { TokenService } from '../../services/token/token.service';
 import { Role } from '../../services/models/Role';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AssignBattalionCommander$Params } from '../../services/fn/brigade-commander-controller/assign-battalion-commander';
 
 @Component({
   selector: 'app-assign-commander',
@@ -39,14 +40,18 @@ export class AssignCommanderComponent implements OnInit {
   onSubmit() {
     this.errorMsg = [];
     if (this.role === Role.BRIGADE_COMMANDER) {
-      this.brigadeCommanderService.assignBattalionCommander().subscribe({
+      const params: AssignBattalionCommander$Params = {
+        battalionGroupId: this.assign.groupId,
+        battalionCommanderId: this.assign.commanderId
+      };
+      this.brigadeCommanderService.assignBattalionCommander(params).subscribe({
         next: (response) => {
           console.log('Battalion created successfully', response);
           this.router.navigate(['/battle-groups']);  // Redirect after successful creation
         },
         error: (err: HttpErrorResponse) => {
           if (err.error) {
-            this.errorMsg = err.error.validationErrors || [];
+            this.errorMsg = err.error.validationErrors || err.error.message;
           } else {
             console.log(err);
             this.errorMsg = ["An unexpected error occurred. Please try again."];

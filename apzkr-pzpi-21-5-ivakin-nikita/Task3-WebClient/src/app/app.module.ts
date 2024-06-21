@@ -18,6 +18,14 @@ import { TokenInterceptor } from './services/intercepters/token-interceptor.serv
 import { GroupResourcesComponent } from './pages/group-resources/group-resources.component';
 import { CommanderInfoComponent } from './pages/commander-info/commander-info.component';
 import { AssignCommanderComponent } from './pages/assign-commander/assign-commander.component';
+import { SupplyRequestsComponent } from './pages/supply-requests/supply-requests.component';
+import { RequestedResourcesComponent } from './pages/requested-resources/requested-resources.component';
+import { SendingResourcesComponent } from './pages/popups/sending-resources/sending-resources.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PostsComponent } from './pages/posts/posts.component';
+import { PostComponent } from './pages/post/post.component';
+import { DeviceComponent } from './pages/device/device.component';
+import { CarPopupComponent } from './pages/popups/car-popup/car-popup.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   console.log(http);
@@ -35,13 +43,20 @@ export function HttpLoaderFactory(http: HttpClient) {
     BattleGroupsListComponent,
     GroupResourcesComponent,
     CommanderInfoComponent,
-    AssignCommanderComponent
+    AssignCommanderComponent,
+    SupplyRequestsComponent,
+    RequestedResourcesComponent,
+    PostsComponent,
+    PostComponent,
+    DeviceComponent,
+    CarPopupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatDialogModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

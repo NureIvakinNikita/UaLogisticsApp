@@ -1,6 +1,12 @@
 <div class="background">
     <div class="add-button">
-        <button (click)="addBattleGroup()">Add battle group</button>
+        <button *ngIf="type === 'groups'" (click)="addBattleGroup()">Add battle group</button>
+    </div>
+    <div class="ask-button">
+        <button *ngIf="type !== 'groups'" (click)="askForResources()">Ask for resources</button>
+    </div>
+    <div class="see-button">
+        <button  (click)="seeSupplyRequests()">See supply requests</button>
     </div>
     <div class="table-container">
         <table>
@@ -17,37 +23,37 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let group of battleGroups">
+                <tr *ngFor="let group of currentGroups">
                     <td>{{group.id}}</td>
                     <td>{{getType()}}</td>
                     <td>{{group.personnelCount}}</td>
                     <td>
-                        <ng-container *ngIf="group.battalionCommanderDTO?.id; else noValue"> 
-                            {{group.battalionCommanderDTO?.id}}
+                        <ng-container *ngIf="group.commander?.id; else noValue"> 
+                            {{group.commander?.id}}
                         </ng-container>
                         <ng-template #noValue>Unassigned</ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="group.battalionCommanderDTO?.firstName; else noValue"> 
-                            {{group.battalionCommanderDTO?.firstName}}
+                        <ng-container *ngIf="group.commander?.firstName; else noValue"> 
+                            {{group.commander?.firstName}}
                         </ng-container>
                         <ng-template #noValue>Unassigned</ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="group.battalionCommanderDTO?.lastName; else noValue"> 
-                            {{group.battalionCommanderDTO?.lastName}}
+                        <ng-container *ngIf="group.commander?.lastName; else noValue"> 
+                            {{group.commander?.lastName}}
                         </ng-container>
                         <ng-template #noValue>Unassigned</ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="group.battalionCommanderDTO?.secondName; else noValue"> 
-                            {{group.battalionCommanderDTO?.secondName}}
+                        <ng-container *ngIf="group.commander?.secondName; else noValue"> 
+                            {{group.commander?.secondName}}
                         </ng-container>
                         <ng-template #noValue>Unassigned</ng-template>
                     </td>
                     <td>
                         <button class="see-resources" (click)="seeResource(group.id!)">See resources</button>
-                        <button *ngIf="group.battalionCommanderDTO?.id; else assignCommanderTemplate" class="commander-info" (click)="seeCommanderInfo(group.id!)">Commander info</button>
+                        <button *ngIf="group.commander?.id; else assignCommanderTemplate" class="commander-info" (click)="seeCommanderInfo(group.id!)">Commander info</button>
                         <ng-template #assignCommanderTemplate>
                             <button class="commander-info" (click)="assignCommander(group.id!)">Assign Commander</button>
                         </ng-template></td>

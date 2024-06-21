@@ -1,0 +1,71 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    height: 100vh;
+    background-color: #a0d7a1;
+
+    .add-button {
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #70ff6b;
+            color: #0f0f0f;
+            
+            &:hover {
+                background-color: #4cad49;
+            }
+        }
+      }
+  
+    .table-container {
+        width: 80%;
+        background-color: #FDF9EA;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+  
+        table {
+            width: 100%;
+            border-collapse: collapse;
+  
+            th, td {
+                text-align: center;
+                padding: 8px;
+            }
+  
+            th {
+                background-color: #f2f2f2;
+            }
+  
+            td {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+  
+        .assign-device {
+            background-color: #fbff27;
+            color: #000;
+
+            &:hover {
+                background-color: #ced121;
+            }
+        }
+  
+    }
+}
+  

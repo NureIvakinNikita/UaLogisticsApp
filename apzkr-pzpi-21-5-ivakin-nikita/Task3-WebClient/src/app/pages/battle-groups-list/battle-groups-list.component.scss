@@ -6,6 +6,25 @@
   height: 100vh;
   background-color: #a0d7a1;
 
+  .ask-button {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #fffd71;
+        color: #0f0f0f;
+        
+        &:hover {
+            background-color: #d3d162;
+        }
+    }
+  }
+
   .add-button {
       width: 80%;
       display: flex;
@@ -20,6 +39,22 @@
           background-color: #b9f735;
           color: rgb(2, 2, 2);
       }
+  }
+
+  .see-button {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #36849c;
+            color: #fff;
+        }
   }
 
   .table-container {
@@ -63,5 +98,6 @@
           background-color: #d27d2d;
           color: #fff;
       }
+
   }
 }

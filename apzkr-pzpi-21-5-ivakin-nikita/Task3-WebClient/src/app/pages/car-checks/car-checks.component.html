@@ -1,0 +1,30 @@
+<div class="background">
+    <div class="back-button">
+        <button (click)="goBack()">Go back</button>
+    </div>
+    <h1 *ngIf="carChecks.length<=0">There are not any car checks yet.</h1>
+    <div *ngIf="carChecks.length>0" class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Device number</th>
+                    <th>Location</th>
+                    <th>Car number</th>
+                    <th>Check type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let carCheck of carChecks">
+                    <td>{{carCheck.id}}</td>
+                    <td>{{carCheck.scanningDeviceDTO.id}}</td>
+                    <td>{{carCheck.scanningDeviceDTO.postDTO.location}}</td>
+                    <td>{{carCheck.supplyCarId}}</td>
+                    <td>{{carCheck.carStatus}}</td>
+                    <td>{{carCheck.localDateTime}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

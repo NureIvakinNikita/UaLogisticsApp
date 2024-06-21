@@ -2,7 +2,7 @@
     <div class="assigning-box">
       <h2>Assigning commander</h2>
       <div class="error-messages" *ngIf="errorMsg.length > 0">
-        <p *ngFor="let error of errorMsg">{{ error }}</p>
+        <p >{{ errorMsg }}</p>
       </div>
       <form (submit)="onSubmit()">
         <div class="form-group">

@@ -15,6 +15,8 @@ import { createPost } from '../fn/admin-controller/create-post';
 import { CreatePost$Params } from '../fn/admin-controller/create-post';
 import { createScanningDevice } from '../fn/admin-controller/create-scanning-device';
 import { CreateScanningDevice$Params } from '../fn/admin-controller/create-scanning-device';
+import { GetPosts$Params, getPosts } from '../fn/admin-controller/get-posts';
+import { PostDto } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class AdminControllerService extends BaseService {
@@ -65,5 +67,19 @@ export class AdminControllerService extends BaseService {
       map((r: StrictHttpResponse<boolean>): boolean => r.body)
     );
   }
+
+
+  static readonly GetPostsPath = '/api/admin/get/posts';
+
+  getPosts$Response(params?: GetPosts$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PostDto>>> {
+    return getPosts(this.http, this.rootUrl, params, context);
+  }
+
+  getPosts(params?: GetPosts$Params, context?: HttpContext): Observable<Array<PostDto>> {
+    return this.getPosts$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<PostDto>>): Array<PostDto> => r.body)
+    );
+  }
+  
 
 }

@@ -1,0 +1,147 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    height: 100vh;
+    background-color: #a0d7a1;
+  
+
+    .error-messages {
+        background-color: #ffdddd;
+        border-left: 4px solid #f44336;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        p {
+          margin: 0;
+          color: #d8000c;
+        }
+    }
+
+    .warning-messages {
+        background-color: #fdfca9;
+        border-left: 4px solid #fafa06;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        p {
+          margin: 0;
+          color: #fae73e;
+        }
+    }
+
+    .add-button {
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+  
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #b9f735;
+            color: rgb(2, 2, 2);
+        }
+    }
+
+    .back-button {
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+    
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f29c6d;
+            color: #fff;
+            
+            &:hover {
+                background-color: #c47c56;
+            }
+        }
+
+    }
+
+    .table-container {
+        width: 80%;
+        background-color: #FDF9EA;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+  
+        table {
+            width: 100%;
+            border-collapse: collapse;
+  
+            th, td {
+                text-align: center;
+                padding: 8px;
+            }
+  
+            th {
+                background-color: #f2f2f2;
+            }
+  
+            td {
+                
+                border-bottom: 1px solid #ddd;
+            }
+        }
+  
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+  
+        .see-resources {
+            background-color: #d3d700;
+            color: #000;
+            &:hover {
+                background-color: #a5a800; 
+            }
+        }
+
+        .create-car {
+            background-color: #f0ff1f;
+            color: #000;
+
+            &:hover {
+                background-color: #cad61d; 
+            }
+        }
+
+        .execute,.confirm {
+            background-color: #1ff83c;
+            color: #000;
+
+            &:hover {
+                background-color: #18ca30; 
+            }
+        }
+  
+        .commander-info {
+            background-color: #d27d2d;
+            color: #fff;
+
+            &:hover {
+                background-color: #b46a25; 
+            }
+        }
+  
+        .see-supply-requests {
+          background-color: #36849c;
+            color: #fff;
+
+            &:hover {
+                background-color: #2b6e83; 
+            }
+        }
+    }
+  }
+  

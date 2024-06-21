@@ -11,7 +11,7 @@ export interface CompanyGroupDto {
   ammo762x39AkCount?: number;
   apcCount?: number;
   bodyArmorCount?: number;
-  companyCommanderDTO?: CompanyCommanderDto;
+  commander?: CompanyCommanderDto;
   defensiveGrenadesCount?: number;
   dryRationsCount?: number;
   foodCount?: number;

@@ -1,7 +1,7 @@
-<div class="background" *ngIf="battalionGroup">
+<div class="background" *ngIf="battleGroup">
   <div class="resources-container">
     <h2 *ngIf="actionType === 'create'">Creation of {{getType()}}</h2>
-    <h2 *ngIf="actionType !== 'create'">Resources of {{getType()}} №{{ battalionGroup.id }}</h2>
+    <h2 *ngIf="actionType !== 'create'">Resources of {{getType()}} №{{ battleGroup.id }}</h2>
     <div class="error-messages" *ngIf="errorMsg.length > 0">
       <p *ngFor="let error of errorMsg">{{ error }}</p>
     </div>
@@ -10,83 +10,84 @@
         <div class="form-column">
           <div class="resource-item">
             <label>Personnel count</label>
-            <input type="text" [(ngModel)]="battalionGroup.personnelCount" name="personnelCount">
+            <input type="text" [(ngModel)]="battleGroup.personnelCount" name="personnelCount">
           </div>
           <div class="resource-item">
             <label>Ammo 5.56*45</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo556x45ArCount" name="ammo556x45ArCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo556x45ArCount" name="ammo556x45ArCount">
           </div>
           <div class="resource-item">
             <label>Ammo 40 mm Rpg</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo40mmRpgCount" name="ammo40mmRpgCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo40mmRpgCount" name="ammo40mmRpgCount">
           </div>
           <div class="resource-item">
             <label>Offensive grenades</label>
-            <input type="text" [(ngModel)]="battalionGroup.offensiveGrenadesCount" name="offensiveGrenadesCount">
+            <input type="text" [(ngModel)]="battleGroup.offensiveGrenadesCount" name="offensiveGrenadesCount">
           </div>
           <div class="resource-item">
             <label>Machine guns</label>
-            <input type="text" [(ngModel)]="battalionGroup.machineGunsCount" name="machineGunsCount">
+            <input type="text" [(ngModel)]="battleGroup.machineGunsCount" name="machineGunsCount">
           </div>
         </div>
         <div class="form-column">
           <div class="resource-item">
             <label>Ammo 5.45*39</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo545x39AkRpkCount" name="ammo545x39AkRpkCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo545x39AkRpkCount" name="ammo545x39AkRpkCount">
           </div>
           <div class="resource-item">
             <label>Ammo 40 mm Gp</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo40mmGpCount" name="ammo40mmGpCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo40mmGpCount" name="ammo40mmGpCount">
           </div>
           <div class="resource-item">
             <label>Body armor</label>
-            <input type="text" [(ngModel)]="battalionGroup.bodyArmorCount" name="bodyArmorCount">
+            <input type="text" [(ngModel)]="battleGroup.bodyArmorCount" name="bodyArmorCount">
           </div>
           <div class="resource-item">
             <label>Dry rations</label>
-            <input type="text" [(ngModel)]="battalionGroup.dryRationsCount" name="dryRationsCount">
+            <input type="text" [(ngModel)]="battleGroup.dryRationsCount" name="dryRationsCount">
           </div>
         </div>
         <div class="form-column">
           <div class="resource-item">
             <label>Ammo 7.62*39</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo762x39AkCount" name="ammo762x39AkCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo762x39AkCount" name="ammo762x39AkCount">
           </div>
           <div class="resource-item">
             <label>Ammo 7.62*54</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo762PktCount" name="ammo762PktCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo762PktCount" name="ammo762PktCount">
           </div>
           <div class="resource-item">
             <label>Helmets</label>
-            <input type="text" [(ngModel)]="battalionGroup.helmetsCount" name="helmetsCount">
+            <input type="text" [(ngModel)]="battleGroup.helmetsCount" name="helmetsCount">
           </div>
           <div class="resource-item">
             <label>Tanks</label>
-            <input type="text" [(ngModel)]="battalionGroup.tankCount" name="tankCount">
+            <input type="text" [(ngModel)]="battleGroup.tankCount" name="tankCount">
           </div>
         </div>
         <div class="form-column">
           <div class="resource-item">
             <label>Ammo 14.5*114</label>
-            <input type="text" [(ngModel)]="battalionGroup.ammo145KpvtCount" name="ammo145KpvtCount">
+            <input type="text" [(ngModel)]="battleGroup.ammo145KpvtCount" name="ammo145KpvtCount">
           </div>
           <div class="resource-item">
             <label>Defensive grenades</label>
-            <input type="text" [(ngModel)]="battalionGroup.defensiveGrenadesCount" name="defensiveGrenadesCount">
+            <input type="text" [(ngModel)]="battleGroup.defensiveGrenadesCount" name="defensiveGrenadesCount">
           </div>
           <div class="resource-item">
             <label>Rifles count</label>
-            <input type="text" [(ngModel)]="battalionGroup.riflesCount" name="riflesCount">
+            <input type="text" [(ngModel)]="battleGroup.riflesCount" name="riflesCount">
           </div>
           <div class="resource-item">
             <label>Apc</label>
-            <input type="text" [(ngModel)]="battalionGroup.apcCount" name="apcCount">
+            <input type="text" [(ngModel)]="battleGroup.apcCount" name="apcCount">
           </div>
         </div>
       </div>
       <div class="form-buttons">
         <button class="back-button" type="button" (click)="goBack()">Go back</button>
         <button class="add-button" type="submit" *ngIf="actionType === 'create'">Add {{getType()}}</button>
+        <button class="update-button" type="submit" *ngIf="type !== 'groups'">Update {{getType()}}</button>
       </div>
     </form>
   </div>
