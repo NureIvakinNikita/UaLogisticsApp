@@ -1,45 +1,44 @@
 <div class="background" *ngIf="commander">
-    <div class="commander-container">
-      <h2>Info of commander №{{ commander.id }}</h2>
+  <div class="commander-container">
+      <h2>{{ 'info-of-commander' | translate }} №{{ commander.id }}</h2>
       <div class="form-columns"> 
-        <div class="form-column">
-          <div class="commander-item">
-            <label>First name</label>
-            <input type="text" [(ngModel)]="commander.firstName" readonly>
+          <div class="form-column">
+              <div class="commander-item">
+                  <label>{{ 'commander-name' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.firstName" readonly>
+              </div>
+              <div class="commander-item">
+                  <label>{{ 'last-name' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.lastName" readonly>
+              </div>
+              <div class="commander-item">
+                  <label>{{ 'second-name' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.secondName" readonly>
+              </div>
+              <div class="commander-item">
+                  <label>{{ 'rank' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.rank" readonly>
+              </div>
           </div>
-          <div class="commander-item">
-            <label>Last name</label>
-            <input type="text" [(ngModel)]="commander.lastName" readonly>
+          <div class="form-column">
+              <div class="commander-item">
+                  <label>{{ 'post' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.role" readonly>
+              </div>
+              <div class="commander-item">
+                  <label>{{ 'age' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.age" readonly>
+              </div>
+              <div class="commander-item">
+                  <label>{{ 'email' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.email" readonly>
+              </div>
+              <div class="commander-item">
+                  <label>{{ 'passport-number' | translate }}</label>
+                  <input type="text" [(ngModel)]="commander.passportNumber" readonly>
+              </div>
           </div>
-          <div class="commander-item">
-            <label>Second name</label>
-            <input type="text" [(ngModel)]="commander.secondName" readonly>
-          </div>
-          <div class="commander-item">
-            <label>Rank</label>
-            <input type="text" [(ngModel)]="commander.rank" readonly>
-          </div>
-        </div>
-        <div class="form-column">
-          <div class="commander-item">
-            <label>Post</label>
-            <input type="text" [(ngModel)]="commander.role" readonly>
-          </div>
-          <div class="commander-item">
-            <label>Age</label>
-            <input type="text" [(ngModel)]="commander.age" readonly>
-          </div>
-          <div class="commander-item">
-            <label>Email</label>
-            <input type="text" [(ngModel)]="commander.email" readonly>
-          </div>
-          <div class="commander-item">
-            <label>Passport number</label>
-            <input type="text" [(ngModel)]="commander.passportNumber" readonly>
-          </div>
-        </div>
       </div>
-      <button class="back-button" (click)="goBack()">Go back</button>
-    </div>
+      <button class="back-button" (click)="goBack()">{{ 'go-back' | translate }}</button>
   </div>
-  
+</div>

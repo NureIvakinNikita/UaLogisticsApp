@@ -1,16 +1,17 @@
 <div class="navbar">
-    <a class="navbar-title" href="/">{{"appName" | translate}}</a>
-    <a *ngIf="checkToken()" class="navbar-link" href="/login">{{"login" | translate}}</a>
-    <a *ngIf="!checkToken()" class="navbar-link" (click)="logout()">Logout</a>
-    <a *ngIf="getToken() !== null && getType() !=='Admin' && getType() !=='Logistic'" class="navbar-link" (click)="seeYourGroups()">Battle Groups</a>
-    <a *ngIf="getToken() !== null && getType() !=='Admin' && getType() !=='Logistic'" class="navbar-link" (click)="seeYourGroup()">Your {{getType()}}</a>
-    <a *ngIf="getType() ==='Admin'" class="navbar-link" href="/posts">Posts</a>
-    <a *ngIf="getType() ==='Logistic'" class="navbar-link" (click)="seeBrigadeRequests()">Brigade supply requests</a>
+    <a class="navbar-title" href="/">{{ "appName" | translate }}</a>
+    <a *ngIf="checkToken()" class="navbar-link" href="/login">{{ "login" | translate }}</a>
+    <a *ngIf="!checkToken()" class="navbar-link" (click)="logout()">{{ "logout" | translate }}</a>
+    <a *ngIf="getToken() !== null && getType() !== 'Admin' && getType() !== 'Logistic'" class="navbar-link" (click)="seeYourGroups()">{{ "battle-groups" | translate }}</a>
+    <a *ngIf="getToken() !== null && getType() !== 'Admin' && getType() !== 'Logistic'" class="navbar-link" (click)="seeYourGroup()">{{ "your" | translate }}</a>
+    <a *ngIf="getType() === 'Admin'" class="navbar-link" href="/posts">{{ "posts" | translate }}</a>
+    <a *ngIf="getType() === 'Logistic'" class="navbar-link" (click)="seeBrigadeRequests()">{{ "brigade-supply-requests" | translate }}</a>
     <div class="dropdown">
-        <button class="dropbtn">{{"language" | translate}}</button>
+        <button class="dropbtn">{{ "language" | translate }}</button>
         <div class="dropdown-content">
             <a (click)="setLanguage('uk')">Uk</a>
             <a (click)="setLanguage('en')">En</a>
+            <a (click)="setLanguage('de')">De</a>
         </div>
     </div>
 </div>

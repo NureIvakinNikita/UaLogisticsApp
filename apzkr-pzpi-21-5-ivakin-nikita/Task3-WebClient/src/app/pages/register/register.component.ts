@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from '../../services/services/authentication-controller.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {}
@@ -53,17 +55,17 @@ export class RegisterComponent implements OnInit {
     this.errorMsg = [];
     
     this.authService.register({ body: this.registerRequest }).subscribe({
-      next: (res) => {
-        this.router.navigate(['/login']);
-      },
-      error: (err: HttpErrorResponse) => {
-        if (err.error) {
-          this.errorMsg = err.error.validationErrors || [];
-        } else {
-          console.log(err);
-          this.errorMsg = ["An unexpected error occurred. Please try again."];
+        next: (res) => {
+            this.router.navigate(['/login']);
+        },
+        error: (err: HttpErrorResponse) => {
+            if (err.error) {
+                this.errorMsg = err.error.validationErrors.map(this.getErrorKey);
+            } else {
+                console.log(err);
+                this.errorMsg = ['unexpectedError'];
+            }
         }
-      }
     });
   }
 
@@ -79,4 +81,33 @@ export class RegisterComponent implements OnInit {
     this.registerRequest.role = 'BRIGADE_COMMANDER';
     this.router.navigate(['']);
   }
+
+  getErrorKey(error: string): string {
+    switch (error) {
+        case 'Password must contain at least one uppercase letter, one lowercase letter, and one digit':
+            return 'passwordNotValid';
+        case 'Password must be between 8 and 20 characters':
+            return 'passwordNotValid2';
+        case 'Password cannot be blank':
+            return 'passwordNotValid3';
+        case 'Last name must be between 2 and 30 characters':
+            return 'lastNameNotValid2';
+        case 'First name must be between 2 and 30 characters':
+            return 'firstNameNotValid';
+        case 'Second name must be between 2 and 30 characters':
+            return 'secondNameNotValid';
+        case 'Passport number must be exactly 9 digits':
+            return 'passportNumberNotValid3';
+        case 'Last name cannot be blank':
+            return 'lastNameNotValid';
+        case 'Passport number cannot be blank':
+            return 'passportNumberNotValid';
+        case 'Email cannot be blank':
+            return 'emailNotValid2';
+        case 'First name cannot be blank':
+            return 'firstNameNotValid2';
+        default:
+            return '';
+        }
+    }
 }

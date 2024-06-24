@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Result of sending resources</h2>
+<h2 mat-dialog-title>{{ 'res-sending' | translate }}</h2>
 <div class="warning-messages">
-  <p *ngIf="data.needForSupply">Need to replenish resources.</p>
-  <p *ngIf="data.reourcesUpdated; else notUpdated">Resources sent successfully.</p>
-  <ng-template #notUpdated><p>Resources weren't sent.</p></ng-template>
+  <p *ngIf="data.needForSupply">{{ 'needForSupply' | translate }}</p>
+  <p *ngIf="data.reourcesUpdated; else notUpdated">{{ 'reourcesUpdated' | translate }}</p>
+  <ng-template #notUpdated><p>{{ 'not-sent' | translate }}</p></ng-template>
 </div>

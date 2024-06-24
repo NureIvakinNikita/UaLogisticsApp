@@ -45,7 +45,7 @@ public class AdminService {
             postService.save(post);
             return true;
         } catch (Exception e) {
-            throw new ScanningDeviceCreationException("Error in creation scanning device for post with id " + id);
+            throw new ScanningDeviceCreationException("Error in creation scanning device for post ");
         }
 
     }

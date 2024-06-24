@@ -216,6 +216,7 @@ export class SupplyRequestsComponent implements OnInit {
 
   goBack() {
     const type = this.type;
+    console.log(type + "supply");
     this.router.navigate(['/battle-groups'], { state: { type } });  
   }
 

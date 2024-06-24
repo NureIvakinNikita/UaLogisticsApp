@@ -44,7 +44,7 @@ export class LoginComponent {
       },
       error: (err: HttpErrorResponse) => {
         if (err.error) {
-          this.errorMsg = err.error.validationErrors || [];
+          this.errorMsg = err.error.validationErrors.map(this.getErrorKey);
         } else {
           console.log(err);
           this.errorMsg = ["An unexpected error occurred. Please try again."];
@@ -58,5 +58,20 @@ export class LoginComponent {
     this.authRequest.email = '';
     this.authRequest.password = '';
     this.router.navigate(['']);
+  }
+
+  getErrorKey(error: string): string {
+    switch (error) {
+        case 'Password must contain at least one uppercase letter, one lowercase letter, and one digit':
+            return 'passwordNotValid';
+        case 'Password must be between 8 and 20 characters':
+            return 'passwordNotValid2';
+        case 'Password cannot be blank':
+            return 'passwordNotValid3';
+        case 'Email cannot be blank':
+            return 'emailNotValid2';
+        default:
+            return 'unexpectedError';
+    }
   }
 }

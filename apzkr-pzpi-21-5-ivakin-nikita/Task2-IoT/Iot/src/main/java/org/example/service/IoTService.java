@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 public class IoTService {
 
     private RequestService requestService;
+    private static final String DEVICE_INFO_FILE_PATH_ENV = "DEVICE_INFO_FILE_PATH";
+
 
     public String sendScanData(int carId){
         try {
@@ -56,20 +58,6 @@ public class IoTService {
         saveDeviceInfo(deviceInfo);
     }
 
-    public DeviceInfo getDeviceInformation() throws IOException {
-
-        String filePath = "E:\\University\\ThirdCourse\\APZ\\LabsAfterLight\\Task3\\apz-pzpi-21-5-ivakin-nikita-task3\\Iot\\src\\main\\java\\org\\example\\configFiles\\device-info.json";
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            DeviceInfo authInfo = objectMapper.readValue(new File(filePath), DeviceInfo.class);
-            return authInfo;
-        } catch (IOException e) {
-            throw new IOException("File with device data not found, call support team.");
-        }
-
-    }
-
     public boolean isDeviceConfigured() {
         try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get("src", "config.txt").toString()))){
             reader.readLine();
@@ -89,15 +77,32 @@ public class IoTService {
     }
 
 
-    public String saveDeviceInfo(DeviceInfo deviceInfo){
-        String filePath = "E:\\University\\ThirdCourse\\APZ\\LabsAfterLight\\Task3\\apz-pzpi-21-5-ivakin-nikita-task3\\Iot\\src\\main\\java\\org\\example\\configFiles\\device-info.json";
+    private String getFilePath() {
+        String filePath = System.getenv(DEVICE_INFO_FILE_PATH_ENV);
+        if (filePath == null || filePath.isEmpty()) {
+            throw new RuntimeException("Environment variable for file path not set: " + DEVICE_INFO_FILE_PATH_ENV);
+        }
+        return filePath;
+    }
+
+    public String saveDeviceInfo(DeviceInfo deviceInfo) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writeValue(new File(filePath), deviceInfo);
+            objectMapper.writeValue(new File(getFilePath()), deviceInfo);
             return "Data has been successfully written.";
         } catch (IOException e) {
             System.out.println(e.getMessage());
             throw new RuntimeException("An error occurred while writing to the JSON file. Please contact the tech support team.");
+        }
+    }
+
+    public DeviceInfo getDeviceInformation() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            DeviceInfo deviceInfo = objectMapper.readValue(new File(getFilePath()), DeviceInfo.class);
+            return deviceInfo;
+        } catch (IOException e) {
+            throw new IOException("File with device data not found, call support team.");
         }
     }
 

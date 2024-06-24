@@ -1,4 +1,4 @@
-<div class="background" >
+<div class="background">
     <div class="resources-container">
         <div class="error-messages" *ngIf="errorMsg.length > 0">
             <p *ngFor="let error of errorMsg">{{ error }}</p>
@@ -6,83 +6,82 @@
         <form (submit)="onSubmit()">
             <div class="table-columns">
                 <div class="table-column">
-                <div class="resource-item">
-                    <label>Ammo 5.56*45</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo556x45ArCount" name="ammo556x45ArCount">
-                </div>
-                <div class="resource-item">
-                    <label>Ammo 40 mm Rpg</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo40mmRpgCount" name="ammo40mmRpgCount">
-                </div>
-                <div class="resource-item">
-                    <label>Offensive grenades</label>
-                    <input type="text" [(ngModel)]="requestedResources.offensiveGrenadesCount" name="offensiveGrenadesCount">
-                </div>
-                <div class="resource-item">
-                    <label>Machine guns</label>
-                    <input type="text" [(ngModel)]="requestedResources.machineGunsCount" name="machineGunsCount">
-                </div>
-                </div>
-                <div class="table-column">
-                <div class="resource-item">
-                    <label>Ammo 5.45*39</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo545x39AkRpkCount" name="ammo545x39AkRpkCount">
-                </div>
-                <div class="resource-item">
-                    <label>Ammo 40 mm Gp</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo40mmGpCount" name="ammo40mmGpCount">
-                </div>
-                <div class="resource-item">
-                    <label>Body armor</label>
-                    <input type="text" [(ngModel)]="requestedResources.bodyArmorCount" name="bodyArmorCount">
-                </div>
-                <div class="resource-item">
-                    <label>Dry rations</label>
-                    <input type="text" [(ngModel)]="requestedResources.dryRationsCount" name="dryRationsCount">
-                </div>
+                    <div class="resource-item">
+                        <label>{{ 'ammo-5.56*45' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo556x45ArCount" name="ammo556x45ArCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'ammo-40-mm-rpg' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo40mmRpgCount" name="ammo40mmRpgCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'offense-grenades' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.offensiveGrenadesCount" name="offensiveGrenadesCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'machine-guns' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.machineGunsCount" name="machineGunsCount">
+                    </div>
                 </div>
                 <div class="table-column">
-                <div class="resource-item">
-                    <label>Ammo 7.62*39</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo762x39AkCount" name="ammo762x39AkCount">
+                    <div class="resource-item">
+                        <label>{{ 'ammo-5.45*39' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo545x39AkRpkCount" name="ammo545x39AkRpkCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'ammo-40-mm-gp' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo40mmGpCount" name="ammo40mmGpCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'body-armor' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.bodyArmorCount" name="bodyArmorCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'dry-rations' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.dryRationsCount" name="dryRationsCount">
+                    </div>
                 </div>
-                <div class="resource-item">
-                    <label>Ammo 7.62*54</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo762PktCount" name="ammo762PktCount">
+                <div class="table-column">
+                    <div class="resource-item">
+                        <label>{{ 'ammo-7.62*39' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo762x39AkCount" name="ammo762x39AkCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'ammo-7.62*54' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo762PktCount" name="ammo762PktCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'helmets' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.helmetsCount" name="helmetsCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'tanks' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.tankCount" name="tankCount">
+                    </div>
                 </div>
-                <div class="resource-item">
-                    <label>Helmets</label>
-                    <input type="text" [(ngModel)]="requestedResources.helmetsCount" name="helmetsCount">
-                </div>
-                <div class="resource-item">
-                    <label>Tanks</label>
-                    <input type="text" [(ngModel)]="requestedResources.tankCount" name="tankCount">
-                </div>
-                </div>
-                <div class="tables-column">
-                <div class="resource-item">
-                    <label>Ammo 14.5*114</label>
-                    <input type="text" [(ngModel)]="requestedResources.ammo145KpvtCount" name="ammo145KpvtCount">
-                </div>
-                <div class="resource-item">
-                    <label>Defensive grenades</label>
-                    <input type="text" [(ngModel)]="requestedResources.defensiveGrenadesCount" name="defensiveGrenadesCount">
-                </div>
-                <div class="resource-item">
-                    <label>Rifles count</label>
-                    <input type="text" [(ngModel)]="requestedResources.riflesCount" name="riflesCount">
-                </div>
-                <div class="resource-item">
-                    <label>Apc</label>
-                    <input type="text" [(ngModel)]="requestedResources.apcCount" name="apcCount">
-                </div>
+                <div class="table-column">
+                    <div class="resource-item">
+                        <label>{{ 'ammo-14.5*114' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.ammo145KpvtCount" name="ammo145KpvtCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'defensive-grenades' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.defensiveGrenadesCount" name="defensiveGrenadesCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'rifles-count' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.riflesCount" name="riflesCount">
+                    </div>
+                    <div class="resource-item">
+                        <label>{{ 'apc' | translate }}</label>
+                        <input type="text" [(ngModel)]="requestedResources.apcCount" name="apcCount">
+                    </div>
                 </div>
             </div>
             <div class="form-buttons">
-                <button class="back-button" type="button" (click)="goBack()">Go back</button>
-                <button class="add-button" type="submit" *ngIf="actionType === 'ask'">Make request</button>
+                <button class="back-button" type="button" (click)="goBack()">{{ 'go-back' | translate }}</button>
+                <button class="add-button" type="submit" *ngIf="actionType === 'ask'">{{ 'ask-for-resources' | translate }}</button>
             </div>
         </form>
     </div>
-  </div>
-  
+</div>

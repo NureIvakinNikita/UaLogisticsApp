@@ -1,24 +1,23 @@
 <div class="login-container">
-    <div class="login-box">
-      <h2>Login</h2>
-      <div class="error-messages" *ngIf="errorMsg.length > 0">
-        <p *ngFor="let error of errorMsg">{{ error }}</p>
-      </div>
-      <form (submit)="onSubmit()">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" [(ngModel)]="authRequest.email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" [(ngModel)]="authRequest.password" name="password" required>
-        </div>
-        <div class="form-actions">
-          <button type="button" (click)="onCancel()">Cancel</button>
-          <button type="submit">Login</button>
-        </div>
-      </form>
-      <p>If you don't have an account <a routerLink="/register">register</a></p>
+  <div class="login-box">
+    <h2>{{ 'login' | translate }}</h2>
+    <div class="error-messages" *ngIf="errorMsg.length > 0">
+      <p *ngFor="let error of errorMsg">{{ error | translate }}</p>
     </div>
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">{{ 'email' | translate }}</label>
+        <input type="email" id="email" [(ngModel)]="authRequest.email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">{{ 'password' | translate }}</label>
+        <input type="password" id="password" [(ngModel)]="authRequest.password" name="password" required>
+      </div>
+      <div class="form-actions">
+        <button type="button" (click)="onCancel()">{{ 'cancel' | translate }}</button>
+        <button type="submit">{{ 'login' | translate }}</button>
+      </div>
+    </form>
+    <p>{{ 'dont-have-account' | translate }} <a routerLink="/register">{{ 'register' | translate }}</a></p>
+  </div>
 </div>
-  

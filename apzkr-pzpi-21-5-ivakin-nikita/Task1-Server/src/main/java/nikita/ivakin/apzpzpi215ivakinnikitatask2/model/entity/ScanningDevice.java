@@ -1,6 +1,7 @@
 package nikita.ivakin.apzpzpi215ivakinnikitatask2.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,6 @@ public class ScanningDevice {
     @JoinColumn(name = "post_id", unique = true)
     private Post post;
 
+    @Min(value=0, message = "Tier can must be 0 or bigger.")
     private Integer tier;
 }

@@ -19,7 +19,7 @@ export class AssignCommanderComponent implements OnInit {
   }
   role: string | undefined;
   errorMsg: Array<string> = [];
-
+  type:string = '';
   
   constructor(
     private router: Router,
@@ -32,6 +32,7 @@ export class AssignCommanderComponent implements OnInit {
     this.route.paramMap.subscribe(() => {
       const state = window.history.state;
       this.assign.groupId = state.id;
+      this.type = state.type;
     });
     this.role = this.tokenService.getRoleFromToken();
   }
@@ -47,7 +48,8 @@ export class AssignCommanderComponent implements OnInit {
       this.brigadeCommanderService.assignBattalionCommander(params).subscribe({
         next: (response) => {
           console.log('Battalion created successfully', response);
-          this.router.navigate(['/battle-groups']);  // Redirect after successful creation
+          const type = this.type;
+          this.router.navigate(['/battle-groups'], { state: { type } });  // Redirect after successful creation
         },
         error: (err: HttpErrorResponse) => {
           if (err.error) {
@@ -63,6 +65,7 @@ export class AssignCommanderComponent implements OnInit {
 
 
   onCancel() {
-    this.router.navigate(['/battle-groups']);
+    const type = this.type;
+    this.router.navigate(['/battle-groups'], { state: { type } });
   }
 }

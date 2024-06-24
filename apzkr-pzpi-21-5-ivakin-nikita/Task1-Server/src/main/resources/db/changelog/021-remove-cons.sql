@@ -1,0 +1,1 @@
+ALTER TABLE project.battalion_commander DROP CONSTRAINT  battalion_commander_brigade_commander_id_key;

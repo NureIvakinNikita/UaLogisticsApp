@@ -1,40 +1,40 @@
 <div class="background">
-    <h1 *ngIf="supplyRequests.length === 0">There are no requests yet</h1>
+    <h1 *ngIf="supplyRequests.length === 0">{{ 'there-are-no-requests-yet' | translate }}</h1>
     <div class="error-messages" *ngIf="errorMsg.length > 0">
         <p *ngFor="let error of errorMsg">{{ error }}</p>
     </div>
     <div *ngIf="type !== 'Logistic'" class="back-button">
-        <button type="button" (click)="goBack()">Go back</button>
+        <button type="button" (click)="goBack()">{{ 'go-back' | translate }}</button>
     </div>
-    <div *ngIf="supplyRequests.length >0" class="table-container">
-        <table >
+    <div *ngIf="supplyRequests.length > 0" class="table-container">
+        <table>
             <thead>
                 <tr>
-                    <th>Number</th>
-                    <th>Commander number</th>
-                    <th>Commadner role</th>
-                    <th>Commander group number</th>
-                    <th>Date of request</th>
-                    <th>Complition date</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>{{ 'number' | translate }}</th>
+                    <th>{{ 'commander-number' | translate }}</th>
+                    <th>{{ 'commander-role' | translate }}</th>
+                    <th>{{ 'commander-group-number' | translate }}</th>
+                    <th>{{ 'date-of-request' | translate }}</th>
+                    <th>{{ 'complition-date' | translate }}</th>
+                    <th>{{ 'status' | translate }}</th>
+                    <th>{{ 'actions' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let request of supplyRequests">
-                    <td>{{request.requestId}}</td>
-                    <td>{{request.commanderId}}</td>
-                    <td>{{request.roleOfCommander}}</td>
-                    <td>{{request.militaryGroupId}}</td>
-                    <td>{{request.dateOfRequest}}</td>
-                    <td>{{request.dateOfExecuting}}</td>
-                    <td>{{request.status}}</td>
+                    <td>{{ request.requestId }}</td>
+                    <td>{{ request.commanderId }}</td>
+                    <td>{{ request.roleOfCommander }}</td>
+                    <td>{{ request.militaryGroupId }}</td>
+                    <td>{{ request.dateOfRequest }}</td>
+                    <td>{{ request.dateOfExecuting }}</td>
+                    <td>{{ request.status }}</td>
                     <td>
-                        <button class="see-resources" (click)="seeResources(request.resourcesRequestId?.id!)" >See resources</button>
-                        <button *ngIf="type !== 'Logistic'" class="commander-info" (click)="sendResources(request.requestId!)" >Send resources</button>
-                        <button *ngIf="type === 'Logistic' && request.status==='NOT_PROCESSED'" class="execute" (click)="execute(request.requestId!)" >Start executing</button>
-                        <button *ngIf="type === 'Logistic' && (request.status==='EXECUTING' || request.status==='CAR_ASSIGNED_EXECUTING' )" class="confirm" (click)="confirm(request.requestId!)" >Confirm delivery</button>
-                        <button *ngIf="type === 'Logistic' && request.status==='EXECUTING'" class="create-car" (click)="createSupplyCar(request.requestId!)" >Create supply car</button>
+                        <button class="see-resources" (click)="seeResources(request.resourcesRequestId?.id!)">{{ 'see-resources' | translate }}</button>
+                        <button *ngIf="type !== 'Logistic'" class="commander-info" (click)="sendResources(request.requestId!)">{{ 'send-resources' | translate }}</button>
+                        <button *ngIf="type === 'Logistic' && request.status === 'NOT_PROCESSED'" class="execute" (click)="execute(request.requestId!)">{{ 'start-executing' | translate }}</button>
+                        <button *ngIf="type === 'Logistic' && (request.status === 'EXECUTING' || request.status === 'CAR_ASSIGNED_EXECUTING')" class="confirm" (click)="confirm(request.requestId!)">{{ 'confirm-delivery' | translate }}</button>
+                        <button *ngIf="type === 'Logistic' && request.status === 'EXECUTING'" class="create-car" (click)="createSupplyCar(request.requestId!)">{{ 'create-supply-car' | translate }}</button>
                     </td>
                 </tr>
             </tbody>

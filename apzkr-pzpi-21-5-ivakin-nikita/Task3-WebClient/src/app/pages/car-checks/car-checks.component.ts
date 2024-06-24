@@ -15,7 +15,7 @@ export class CarChecksComponent implements OnInit {
   carChecks: CarCheckDto[] = [];
   type: string = "";
 
-  constructor(private translateService: TranslateService,
+  constructor(private translate: TranslateService,
     private router: Router,
     private tokenService: TokenService,
     private route: ActivatedRoute) {

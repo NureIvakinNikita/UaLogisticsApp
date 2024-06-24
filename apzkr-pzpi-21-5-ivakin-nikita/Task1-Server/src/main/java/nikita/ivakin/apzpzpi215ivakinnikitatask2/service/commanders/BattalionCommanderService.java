@@ -111,7 +111,7 @@ public class BattalionCommanderService {
         if (tempBatCom.isPresent()) {
             return tempBatCom.get();
         } else {
-            throw new CommanderNotFoundException("Error battalion commander with id" + id + " doesn't exist.");
+            throw new CommanderNotFoundException("Error battalion commander with such id doesn't exist.");
         }
     }
 

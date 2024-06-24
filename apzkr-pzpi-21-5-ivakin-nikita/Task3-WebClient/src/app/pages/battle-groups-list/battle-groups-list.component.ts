@@ -29,6 +29,7 @@ export class BattleGroupsListComponent implements OnInit {
     private route: ActivatedRoute,
     private brigadeCommanderService: BrigadeCommanderControllerService,
     private battalionCommanderService: BattalionCommanderControllerService,
+    
   ) {}
 
   ngOnInit() {
@@ -107,7 +108,7 @@ export class BattleGroupsListComponent implements OnInit {
   }
 
   assignCommander(id: number){
-    const type = this.getType();
+    const type = this.type;
     this.router.navigate(['/assing-commander'], { state: { id, type } });
   }
 
@@ -115,7 +116,6 @@ export class BattleGroupsListComponent implements OnInit {
     const actionType = "ask"
     const battleGroup = this.currentGroups[0];
     const commanderId = battleGroup.commander?.id;
-    console.log(commanderId);
     const militaryGroupId = battleGroup.id;
     const roleOfCommander = battleGroup.commander?.role;
     const type = this.type;

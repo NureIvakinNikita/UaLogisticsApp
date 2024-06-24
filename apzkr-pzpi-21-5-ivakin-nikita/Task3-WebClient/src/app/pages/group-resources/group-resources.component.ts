@@ -91,7 +91,7 @@ export class GroupResourcesComponent implements OnInit {
           },
           error: (err: HttpErrorResponse) => {
             if (err.error) {
-              this.errorMsg = err.error.validationErrors || err.error.message;
+              this.errorMsg = err.error.validationErrors.map(this.getErrorKey);
             } else {
               console.log(err);
               this.errorMsg = ["An unexpected error occurred. Please try again."];
@@ -141,6 +141,27 @@ export class GroupResourcesComponent implements OnInit {
         return 'Plat';
       default:
         return 'Error';
+    }
+  }
+
+  getErrorKey(error: string): string {
+    switch (error) {
+        case 'Personnel count in battalion have to be 400 - 600.':
+            return 'personnelNotValidBat';
+        case 'Helmets count in battalion have to be at least 750.':
+            return 'helmetsNotValidBat';
+        case 'Machine guns count in battalion have to be at least 89.':
+            return 'machineGunsNotValidBat';
+        case 'Rifles count in battalion have to be at least 641.':
+            return 'riflesNotValidBat';
+        case 'Body Armor count in battalion have to be at least 750.':
+            return 'bodyArmorNotValidBat';
+        case 'Dry rations count in battalion have to be at least 1800.':
+            return 'dryRationsNotValidBat';
+        case 'Amount of ammo should be bigger or equal 0.':
+            return 'ammoNotValidBat';
+        default:
+            return 'unexpectedError';
     }
   }
 }

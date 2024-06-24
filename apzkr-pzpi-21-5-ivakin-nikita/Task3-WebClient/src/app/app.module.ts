@@ -20,12 +20,13 @@ import { CommanderInfoComponent } from './pages/commander-info/commander-info.co
 import { AssignCommanderComponent } from './pages/assign-commander/assign-commander.component';
 import { SupplyRequestsComponent } from './pages/supply-requests/supply-requests.component';
 import { RequestedResourcesComponent } from './pages/requested-resources/requested-resources.component';
-import { SendingResourcesComponent } from './pages/popups/sending-resources/sending-resources.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostComponent } from './pages/post/post.component';
 import { DeviceComponent } from './pages/device/device.component';
 import { CarPopupComponent } from './pages/popups/car-popup/car-popup.component';
+import { CarChecksComponent } from './pages/car-checks/car-checks.component';
+import { SendingResourcesComponent } from './pages/popups/sending-resources/sending-resources.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   console.log(http);
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PostComponent,
     DeviceComponent,
     CarPopupComponent,
+    CarChecksComponent,
   ],
   imports: [
     BrowserModule,

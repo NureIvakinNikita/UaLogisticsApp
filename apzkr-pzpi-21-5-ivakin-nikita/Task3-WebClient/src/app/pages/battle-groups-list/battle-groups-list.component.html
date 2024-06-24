@@ -1,62 +1,63 @@
 <div class="background">
     <div class="add-button">
-        <button *ngIf="type === 'groups'" (click)="addBattleGroup()">Add battle group</button>
+        <button *ngIf="type === 'groups'" (click)="addBattleGroup()">{{ 'add-battle-group' | translate }}</button>
     </div>
     <div class="ask-button">
-        <button *ngIf="type !== 'groups'" (click)="askForResources()">Ask for resources</button>
+        <button *ngIf="type !== 'groups'" (click)="askForResources()">{{ 'ask-for-resources' | translate }}</button>
     </div>
     <div class="see-button">
-        <button  (click)="seeSupplyRequests()">See supply requests</button>
+        <button (click)="seeSupplyRequests()">{{ 'see-supply-requests' | translate }}</button>
     </div>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>Number</th>
-                    <th>Type</th>
-                    <th>Personnel Count</th>
-                    <th>Commander ID</th>
-                    <th>Commander First Name</th>
-                    <th>Last Name</th>
-                    <th>Second Name</th>
-                    <th>Actions</th>
+                    <th>{{ 'number' | translate }}</th>
+                    <th>{{ 'type' | translate }}</th>
+                    <th>{{ 'pesonnel-count' | translate }}</th>
+                    <th>{{ 'commander-id' | translate }}</th>
+                    <th>{{ 'commander-name' | translate }}</th>
+                    <th>{{ 'last-name' | translate }}</th>
+                    <th>{{ 'second-name' | translate }}</th>
+                    <th>{{ 'actions' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let group of currentGroups">
-                    <td>{{group.id}}</td>
-                    <td>{{getType()}}</td>
-                    <td>{{group.personnelCount}}</td>
+                    <td>{{ group.id }}</td>
+                    <td>{{ getType() }}</td>
+                    <td>{{ group.personnelCount }}</td>
                     <td>
-                        <ng-container *ngIf="group.commander?.id; else noValue"> 
-                            {{group.commander?.id}}
+                        <ng-container *ngIf="group.commander?.id; else noValue">
+                            {{ group.commander?.id }}
                         </ng-container>
-                        <ng-template #noValue>Unassigned</ng-template>
+                        <ng-template #noValue>{{ 'unassigned' | translate }}</ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="group.commander?.firstName; else noValue"> 
-                            {{group.commander?.firstName}}
+                        <ng-container *ngIf="group.commander?.firstName; else noValue">
+                            {{ group.commander?.firstName }}
                         </ng-container>
-                        <ng-template #noValue>Unassigned</ng-template>
+                        <ng-template #noValue>{{ 'unassigned' | translate }}</ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="group.commander?.lastName; else noValue"> 
-                            {{group.commander?.lastName}}
+                        <ng-container *ngIf="group.commander?.lastName; else noValue">
+                            {{ group.commander?.lastName }}
                         </ng-container>
-                        <ng-template #noValue>Unassigned</ng-template>
+                        <ng-template #noValue>{{ 'unassigned' | translate }}</ng-template>
                     </td>
                     <td>
-                        <ng-container *ngIf="group.commander?.secondName; else noValue"> 
-                            {{group.commander?.secondName}}
+                        <ng-container *ngIf="group.commander?.secondName; else noValue">
+                            {{ group.commander?.secondName }}
                         </ng-container>
-                        <ng-template #noValue>Unassigned</ng-template>
+                        <ng-template #noValue>{{ 'unassigned' | translate }}</ng-template>
                     </td>
                     <td>
-                        <button class="see-resources" (click)="seeResource(group.id!)">See resources</button>
-                        <button *ngIf="group.commander?.id; else assignCommanderTemplate" class="commander-info" (click)="seeCommanderInfo(group.id!)">Commander info</button>
+                        <button class="see-resources" (click)="seeResource(group.id!)">{{ 'see-resources' | translate }}</button>
+                        <button *ngIf="group.commander?.id; else assignCommanderTemplate" class="commander-info" (click)="seeCommanderInfo(group.id!)">{{ 'commander-info' | translate }}</button>
                         <ng-template #assignCommanderTemplate>
-                            <button class="commander-info" (click)="assignCommander(group.id!)">Assign Commander</button>
-                        </ng-template></td>
+                            <button class="commander-info" (click)="assignCommander(group.id!)">{{ 'assign-commander' | translate }}</button>
+                        </ng-template>
+                    </td>
                 </tr>
             </tbody>
         </table>
